@@ -1,32 +1,102 @@
-# Prerequisites
-*.d
+#include <iostream>
+#include<cstdlib>
+#include<time.h>
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+using namespace std;
 
-# Precompiled Headers
-*.gch
-*.pch
+char Mapa[20][60];
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+char pole[60][20];
 
-# Fortran module files
-*.mod
-*.smod
+void rysuj_linie();
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+void rysuj_mape();
 
-# Executables
-*.exe
-*.out
-*.app
+void rysuj_weza();
+
+int dl=1;
+
+int Xw, Yw;
+
+void rysuj_jedzenie();
+
+int Xj, Yj;
+
+int main()
+{
+    rysuj_mape();
+
+	rysuj_weza();
+
+	rysuj_jedzenie();
+
+	system("cls");
+
+	return 0;
+}
+
+void rysuj_linie()
+{
+    cout<<" ";
+    for (int i = 0; i<60; i++)
+    {
+        cout<<"-";
+    }
+    cout<<endl;
+}
+void rysuj_mape()
+{
+    rysuj_linie();
+
+    for (int j = 0; j<20; j++)
+    {
+        cout<<"|";
+        for (int k = 0; k<60; k++)
+        {
+            if(pole[j][k]=='p') cout<<" ";
+            if(pole[j][k]=='w') cout<<"o";
+            if(pole[j][k]=='j') cout<<"x";
+
+            cout<<Mapa[j][k];
+        }
+        cout<<"|";
+        cout<<endl;
+
+    }
+
+    rysuj_linie();
+
+}
+
+void rysuj_jedzenie()
+{
+	for(int i=0; i<60; )
+	{
+		for(int j=0; j<20; )
+		{
+			pole[j][i]='p';
+		}
+	}
+	do
+	{
+
+		Xj=rand()%60;
+		Yj=rand()%20;
+		}while(pole[Xj][Yj]!='p');
+
+	pole[Xj][Yj]='j';
+}
+
+void rysuj_weza()
+{
+	for(int i = 0; i < 60; )
+	{
+		for(int j = 0; j < 20; )
+		{
+			Xw=rand()%60;
+			Yw=rand()%20;
+		}
+	}
+	pole[Xw][Yw]='w';
+}
+
